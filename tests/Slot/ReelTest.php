@@ -55,7 +55,7 @@ class ReelTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function testStopsWithSameName()
+    public function testRepeatedStops()
     {
         $reel = new Reel([new Symbol("A"),
             new Symbol("B"),
