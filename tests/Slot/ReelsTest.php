@@ -1,8 +1,10 @@
 <?php
 namespace Cassell\Test\Casino\Slot;
 
+use Cassell\Casino\Slot\PayLine;
 use Cassell\Casino\Slot\Reel;
 use Cassell\Casino\Slot\Reels;
+use Cassell\Casino\Slot\ReelSpinResult;
 use Cassell\Casino\Slot\Symbol;
 
 class ReelsTest extends \PHPUnit_Framework_TestCase
@@ -31,7 +33,14 @@ class ReelsTest extends \PHPUnit_Framework_TestCase
 
         $reels = new Reels([$reel1]);
 
-        $this->assertContains($reels->spin()->getResultForReelNumber(1),$stops);
+        $payline = $reels->spin();
+
+        $this->assertCount(1,$payline);
+
+        /** @var ReelSpinResult $result */
+        foreach($payline as $result) {
+            $this->assertContains($result->getSymbol(),$stops);
+        }
 
     }
 
@@ -40,6 +49,7 @@ class ReelsTest extends \PHPUnit_Framework_TestCase
      */
     public function testManyReels()
     {
+
         $stops = [new Symbol("A"),
             new Symbol("B"),
             new Symbol("C"),
@@ -53,8 +63,13 @@ class ReelsTest extends \PHPUnit_Framework_TestCase
         $reel3 = new Reel($stops);
 
         $reels = new Reels([$reel1,$reel2,$reel3]);
-        for ($i = 1; $i <= $reels->getCountOfReelsOnSlot(); $i++) {
-            $this->assertContains($reels->spin()->getResultForReelNumber($i),$stops);
+
+        $payline = $reels->spin();
+
+        $this->assertCount(3,$payline);
+
+        foreach($payline as $result) {
+            $this->assertContains($result->getSymbol(),$stops);
         }
 
     }

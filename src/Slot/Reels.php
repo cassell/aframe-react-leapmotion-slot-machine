@@ -24,6 +24,9 @@ class Reels
         }
     }
 
+    /**
+     * @return PayLine
+     */
     public function spin()
     {
         $results = [];
@@ -31,16 +34,7 @@ class Reels
             $results[] = $reel->spin();
         }
 
-        return new SpinResults($results);
-
-    }
-
-    /**
-     * @return int
-     */
-    public function getCountOfReelsOnSlot()
-    {
-        return count($this->reels);
+        return new PayLine($results);
     }
 
     private function addReel(Reel $reel)
