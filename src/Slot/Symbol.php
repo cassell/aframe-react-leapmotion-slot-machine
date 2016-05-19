@@ -22,4 +22,9 @@ class Symbol
         return $this->name;
     }
 
+    public function equals(Symbol $symbol)
+    {
+        return $this->getName() === $symbol->getName();
+    }
+
 }
