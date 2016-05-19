@@ -53,4 +53,24 @@ class AmountTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(16,(new Amount(31))->reduceAmount(new Amount(15))->getAmount());
     }
 
+    /**
+     * @test
+     */
+    public function testEquals()
+    {
+        $this->assertTrue((new Amount(1))->equals(new Amount(1)));
+        $this->assertFalse((new Amount(1))->equals(new Amount(2)));
+    }
+
+    /**
+     * @test
+     */
+    public function testLessThan()
+    {
+        $this->assertFalse((new Amount(1))->lessThan(new Amount(1)));
+        $this->assertTrue((new Amount(1))->lessThan(new Amount(2)));
+    }
+
+
+
 }

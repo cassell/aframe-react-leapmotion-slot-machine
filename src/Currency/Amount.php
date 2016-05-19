@@ -30,7 +30,7 @@ class Amount
     }
 
     /**
-     * @param Amount $amount
+     * @param  Amount $amount
      * @return Amount
      */
     public function addAmount(Amount $amount)
@@ -39,7 +39,7 @@ class Amount
     }
 
     /**
-     * @param Amount $amount
+     * @param  Amount $amount
      * @return Amount
      */
     public function reduceAmount(Amount $amount)
@@ -53,6 +53,24 @@ class Amount
     public function isPositive()
     {
         return $this->getAmount() > 0;
+    }
+
+    /**
+     * @param Amount $amount
+     * @return bool
+     */
+    public function equals(Amount $amount)
+    {
+        return $this->getAmount() == $amount->getAmount();
+    }
+
+    /**
+     * @param Amount $amount
+     * @return bool
+     */
+    public function lessThan(Amount $amount)
+    {
+        return $this->getAmount() < $amount->getAmount();
     }
 
 }
