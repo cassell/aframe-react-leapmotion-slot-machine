@@ -36,11 +36,13 @@ class Reel
     }
 
     /**
-     * @return Symbol
+     * @return ReelSpinResult
      */
     public function spin()
     {
-        return $this->stops[array_rand($this->stops)];
+        $position = array_rand($this->stops);
+        $symbol = $this->stops[$position];
+        return new ReelSpinResult($position + 1,$symbol);
     }
 
 }

@@ -26,10 +26,10 @@ class ReelTest extends \PHPUnit_Framework_TestCase
             new Symbol("D"),
             new Symbol("E"),
             new Symbol("F")]);
-        $this->assertContains($reel->spin()->getName(),["A","B","C","D","E","F"]);
-        $this->assertContains($reel->spin()->getName(),["A","B","C","D","E","F"]);
-        $this->assertContains($reel->spin()->getName(),["A","B","C","D","E","F"]);
-        $this->assertContains($reel->spin()->getName(),["A","B","C","D","E","F"]);
+        $this->assertContains($reel->spin()->getSymbol()->getName(),["A","B","C","D","E","F"]);
+        $this->assertContains($reel->spin()->getSymbol()->getName(),["A","B","C","D","E","F"]);
+        $this->assertContains($reel->spin()->getSymbol()->getName(),["A","B","C","D","E","F"]);
+        $this->assertContains($reel->spin()->getSymbol()->getName(),["A","B","C","D","E","F"]);
     }
 
     /**
@@ -46,7 +46,7 @@ class ReelTest extends \PHPUnit_Framework_TestCase
         $results = [];
 
         for ($i = 0; $i < 100; $i++) {
-            $results[$reel->spin()->getName()] += 1;
+            $results[$reel->spin()->getSymbol()->getName()] += 1;
         }
 
         $this->assertCount(5,$results);
@@ -66,7 +66,7 @@ class ReelTest extends \PHPUnit_Framework_TestCase
         $results = [];
 
         for ($i = 0; $i < 100; $i++) {
-            $results[$reel->spin()->getName()] += 1;
+            $results[$reel->spin()->getSymbol()->getName()] += 1;
         }
 
         $this->assertCount(3,$results);
