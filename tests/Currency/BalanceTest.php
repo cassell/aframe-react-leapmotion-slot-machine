@@ -44,7 +44,15 @@ class BalanceTestextends extends \PHPUnit_Framework_TestCase
     {
         $balance = new Balance(5);
         $balance->reduceAmount(new Amount(10));
+    }
 
+    /**
+     * @test
+     */
+    public function testReduce()
+    {
+        $balance = new Balance(5);
+        $this->assertEquals(3,$balance->reduceAmount(new Amount(2))->getAmount());
     }
 
 }
