@@ -45,6 +45,28 @@ $(document).ready(function () {
         }
     });
 
+
+    var SpinButton = React.createClass({
+
+        render: function () {
+            return <a-entity id="spin-button">
+                <a-entity text="text: Spin; size: 0.1" material="color: #FFFFFF" position="-.125 0 1"></a-entity>
+                <a-entity geometry="primitive: circle; radius: .3" material="color: #000000" position="0 0 1"></a-entity>
+            </a-entity>;
+        }
+    });
+
+    var SlotMachine = React.createClass({
+
+        render: function () {
+            return React.createElement('a-entity', {}, [
+                <SpinButton key="spin-button" />,
+            ]);
+        }
+    });
+
+
+
     var Casino = React.createClass({
 
         componentDidMount: function() {
@@ -65,7 +87,6 @@ $(document).ready(function () {
             this.setState({
                 balance: newBalance
             });
-            //this.refs.balance.updateBalance(newBalance);
         },
 
         getInitialState: function () {
@@ -78,6 +99,7 @@ $(document).ready(function () {
                     <Assets key="assets"/>,
                     <Sky key="sky"/>,
                     <Camera key="camera"/>,
+                    <SlotMachine ref="slotmachine" key="slotmachine"/>,
                     <Balance ref="balance" balance={this.state.balance} key="balance" />
                 ]));
         }
@@ -85,9 +107,19 @@ $(document).ready(function () {
 
     var casinoInstance = ReactDOM.render(<Casino balanceUrl="api/balance.php"/>, $("#scene-container").get(0));
 
+    function pull() {
+
+        console.log("pull");
+
+
+    }
+
 
     function run () {
 
+        $("#spin-button").on('cursor-mouseenter', function () {
+            pull();
+        });
 
     }
 
