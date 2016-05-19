@@ -4,7 +4,7 @@ namespace Cassell\Test\Casino\Currency;
 use Cassell\Casino\Currency\Amount;
 use Cassell\Casino\Currency\Balance;
 
-class BalanceTestextends extends \PHPUnit_Framework_TestCase
+class BalanceTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
