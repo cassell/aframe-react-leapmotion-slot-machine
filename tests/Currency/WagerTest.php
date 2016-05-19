@@ -24,5 +24,22 @@ class WagerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(15,(new Wager(15))->getAmount());
     }
 
+    /**
+     * @test
+     * @expectedException \Exception
+     */
+    public function testZero()
+    {
+        new Wager(0);
+    }
+
+    /**
+     * @test
+     * @expectedException \Exception
+     */
+    public function testNegative()
+    {
+        new Wager(-5);
+    }
 
 }

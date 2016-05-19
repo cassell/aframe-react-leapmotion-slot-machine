@@ -1,7 +1,7 @@
 <?php
 namespace Cassell\Casino\Slot;
 
-use Cassell\Casino\Currency\Amount;
+use Cassell\Casino\Currency\Wager;
 
 class SlotMachine
 {
@@ -9,19 +9,22 @@ class SlotMachine
      * @var Reels
      */
     private $reels;
+    /**
+     * @var PayTable
+     */
+    private $payTable;
 
-    public function __construct(Reels $reels)
+    public function __construct(Reels $reels, PayTable $payTable)
     {
         $this->reels = $reels;
+        $this->payTable = $payTable;
     }
 
-    public function pull(Amount $bet)
+    public function pull(Wager $wager)
     {
-        if (! $bet->isPositive()) {
-
-        }
-        $result = $this->reels->spin();
-
+        $payline = $this->reels->spin();
+        $won = $this->payTable->getAmountWon($wager,$payline);
+        return new SlotMachineResult($wager,$payline, $won);
     }
 
 }
