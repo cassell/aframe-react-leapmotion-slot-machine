@@ -45,4 +45,15 @@ class Reel
         return new ReelSpinResult($position + 1,$symbol);
     }
 
+    public static function fromString($string)
+    {
+        $symbols = [];
+        foreach(explode(" ",$string) as $str) {
+            $symbols[] = new Symbol($str);
+        }
+
+        return new self($symbols);
+
+    }
+
 }
