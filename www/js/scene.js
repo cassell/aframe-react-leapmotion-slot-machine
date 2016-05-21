@@ -278,6 +278,8 @@ $(document).ready(function () {
 
         animateReelSpinTime: 7800,
 
+        defaultWager: 1,
+
         updateAmountWon: function(amountWon) {
 
             if(amountWon > 0) {
@@ -307,10 +309,11 @@ $(document).ready(function () {
             if(!this.isBetting())
             {
                 this.updateBettingCondition(true);
+                this.setState({ balance : this.state.balance - this.defaultWager });
 
                 $.ajax({
                     url: this.props.pullUrl,
-                    data: { wager : 1},
+                    data: { wager : this.defaultWager},
                     dataType: 'json',
                     cache: false,
                     success: function(resp) {
@@ -403,8 +406,5 @@ $(document).ready(function () {
     } else {
         scene.addEventListener('loaded', run);
     }
-
-
-
 
 });
