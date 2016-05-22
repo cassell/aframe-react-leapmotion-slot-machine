@@ -376,6 +376,8 @@ $(document).ready(function () {
 
     var casinoInstance = ReactDOM.render(<Casino balanceUrl="api/balance.php" pullUrl="api/pull.php"/>, $("#scene-container").get(0));
 
+    var scene = $('a-scene').get(0);
+
     function run () {
 
         $("#casino-ambient").get(0).volume = .1;
@@ -398,8 +400,6 @@ $(document).ready(function () {
         });
 
     }
-
-    var scene = $('a-scene').get(0);
 
     if (scene.hasLoaded) {
         run();
